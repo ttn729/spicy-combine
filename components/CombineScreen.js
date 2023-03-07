@@ -58,7 +58,7 @@ export default function CombineScreen() {
       <Box sx={{justifyContent: "right"}}>
         {combination.map((line, index) => {
           return (
-            <Box>
+            <Box key={index}>
               <Typography key={index} align="left">
                 {line[0]}
               </Typography>
