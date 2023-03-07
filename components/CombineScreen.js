@@ -1,4 +1,4 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import React from "react";
 
 export default function CombineScreen() {
@@ -31,23 +31,31 @@ export default function CombineScreen() {
 
   return (
     <>
-      <Box>
-        <Typography variant="h2">Spicy Combine</Typography>
+      <Box sx={{ width: 1 }}>
+        <Typography color="green" variant="h2" align="center" margin={2}>Spicy Combine</Typography>
 
-        <TextField
-          multiline
-          label="First Text"
-          minRows={20}
-          value={first}
-          onChange={onChangeFirst}
-        />
-        <TextField
-          multiline
-          label="Second Text"
-          minRows={20}
-          value={second}
-          onChange={onChangeSecond}
-        />
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+          <Grid item xs={6}>
+            <TextField
+              multiline
+              label="First Text"
+              minRows={20}
+              value={first}
+              onChange={onChangeFirst}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              multiline
+              label="Second Text"
+              minRows={20}
+              value={second}
+              onChange={onChangeSecond}
+              fullWidth
+            />
+          </Grid>
+        </Grid>
       </Box>
 
       <Button variant="outlined" onClick={onClickCombine}>
@@ -55,7 +63,7 @@ export default function CombineScreen() {
       </Button>
       <Button variant="outlined">Hide Random</Button>
 
-      <Box sx={{justifyContent: "right"}}>
+      <Box sx={{ justifyContent: "right" }}>
         {combination.map((line, index) => {
           return (
             <Box key={index}>
