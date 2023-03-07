@@ -34,8 +34,24 @@ export default function CombineScreen() {
 
     if (firstSplit.length == secondSplit.length && first != "") {
       for (var i = 0; i < secondSplit.length; i++) {
+        let punctuation = "";
         let words = secondSplit[i].split(" ");
+
+        if (words[words.length - 1][words[words.length - 1].length - 1].toLowerCase() == words[words.length - 1][words[words.length - 1].length - 1].toUpperCase()) {
+            punctuation = words[words.length - 1][words[words.length - 1].length - 1];
+            console.log(words)
+            console.log("punctuation is ", punctuation)
+        }
+
         words[getRandomInt(words.length)] = "_".repeat(16);
+
+    
+        if (words[words.length - 1][words[words.length - 1].length - 1] === "_") {
+            words[words.length - 1] += punctuation;
+        }
+
+        
+
         secondSplit[i] = words.join(" ");
       }
       combined = zip(firstSplit, secondSplit);
