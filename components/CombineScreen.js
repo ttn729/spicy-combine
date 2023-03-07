@@ -84,10 +84,10 @@ export default function CombineScreen() {
 
       <Box flexDirection="row" margin={1}>
         <Button variant="outlined" onClick={onClickCombine}>
-          Combine
+          Combine Text
         </Button>
         <Button variant="outlined" onClick={onClickHidden}>
-          Hide Random
+          Hide Random Word
         </Button>
       </Box>
 
