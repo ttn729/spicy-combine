@@ -9,6 +9,11 @@ export default function CombineScreen() {
   // https://stackoverflow.com/questions/32937181/javascript-es6-map-multiple-arrays
   let zip = (a1, a2) => a1.map((x, i) => [x, a2[i]]);
 
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
   const onClickCombine = () => {
     let combined = [];
 
@@ -16,6 +21,23 @@ export default function CombineScreen() {
     let secondSplit = second.split("\n");
 
     if (firstSplit.length == secondSplit.length) {
+      combined = zip(firstSplit, secondSplit);
+    }
+    setCombination(combined);
+  };
+
+  const onClickHidden = () => {
+    let combined = [];
+
+    let firstSplit = first.split("\n");
+    let secondSplit = second.split("\n");
+
+    if (firstSplit.length == secondSplit.length) {
+      for (var i = 0; i < secondSplit.length; i++) {
+        let words = secondSplit[i].split(" ");
+        words[getRandomInt(words.length)] = "_".repeat(16);
+        secondSplit[i] = words.join(" ");
+      }
       combined = zip(firstSplit, secondSplit);
     }
 
@@ -32,7 +54,9 @@ export default function CombineScreen() {
   return (
     <>
       <Box sx={{ width: 1 }}>
-        <Typography color="green" variant="h2" align="center" margin={2}>Spicy Combine</Typography>
+        <Typography color="green" variant="h2" align="center" margin={2}>
+          Spicy Combine
+        </Typography>
 
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid item xs={6}>
@@ -58,21 +82,21 @@ export default function CombineScreen() {
         </Grid>
       </Box>
 
-      <Button variant="outlined" onClick={onClickCombine}>
-        Combine
-      </Button>
-      <Button variant="outlined">Hide Random</Button>
+      <Box flexDirection="row" margin={2}>
+        <Button variant="outlined" onClick={onClickCombine}>
+          Combine
+        </Button>
+        <Button variant="outlined" onClick={onClickHidden}>
+          Hide Random
+        </Button>
+      </Box>
 
       <Box sx={{ justifyContent: "right" }}>
         {combination.map((line, index) => {
           return (
             <Box key={index}>
-              <Typography key={index} align="left">
-                {line[0]}
-              </Typography>
-              <Typography key={index} align="left">
-                {line[1]}
-              </Typography>
+              <Typography align="left">{line[0]}</Typography>
+              <Typography align="left">{line[1]}</Typography>
             </Box>
           );
         })}
