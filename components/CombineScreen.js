@@ -32,7 +32,7 @@ export default function CombineScreen() {
     let firstSplit = first.split("\n");
     let secondSplit = second.split("\n");
 
-    if (firstSplit.length == secondSplit.length) {
+    if (firstSplit.length == secondSplit.length && first != "") {
       for (var i = 0; i < secondSplit.length; i++) {
         let words = secondSplit[i].split(" ");
         words[getRandomInt(words.length)] = "_".repeat(16);
@@ -82,7 +82,7 @@ export default function CombineScreen() {
         </Grid>
       </Box>
 
-      <Box flexDirection="row" margin={2}>
+      <Box flexDirection="row" margin={1}>
         <Button variant="outlined" onClick={onClickCombine}>
           Combine
         </Button>
