@@ -43,7 +43,7 @@ export default function CombineScreen() {
             console.log("punctuation is ", punctuation)
         }
 
-        words[getRandomInt(words.length)] = "_".repeat(16);
+        words[getRandomInt(words.length)] = "_".repeat(10);
 
     
         if (words[words.length - 1][words[words.length - 1].length - 1] === "_") {
@@ -58,6 +58,12 @@ export default function CombineScreen() {
     }
 
     setCombination(combined);
+  };
+
+  const onClickCopy = () => {
+    if (combination.length != 0) {
+      navigator.clipboard.writeText(combination.flat().join("\n"));
+    }
   };
 
   const onChangeFirst = (e) => {
@@ -105,6 +111,8 @@ export default function CombineScreen() {
         <Button variant="outlined" onClick={onClickHidden}>
           Hide Random Word
         </Button>
+
+        <Button variant="outlined" onClick={onClickCopy}>Copy Text</Button>
       </Box>
 
       <Box sx={{ justifyContent: "right" }}>
