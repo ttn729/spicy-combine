@@ -5,6 +5,7 @@ export default function CombineScreen() {
   const [first, setFirst] = React.useState("");
   const [second, setSecond] = React.useState("");
   const [combination, setCombination] = React.useState([]);
+  const [hidden, setHidden] = React.useState([]);
 
   // https://stackoverflow.com/questions/32937181/javascript-es6-map-multiple-arrays
   let zip = (a1, a2) => a1.map((x, i) => [x, a2[i]]);
@@ -28,6 +29,7 @@ export default function CombineScreen() {
 
   const onClickHidden = () => {
     let combined = [];
+    let hiddenWords = [];
 
     let firstSplit = first.split("\n");
     let secondSplit = second.split("\n");
@@ -37,27 +39,41 @@ export default function CombineScreen() {
         let punctuation = "";
         let words = secondSplit[i].split(" ");
 
-        if (words[words.length - 1][words[words.length - 1].length - 1].toLowerCase() == words[words.length - 1][words[words.length - 1].length - 1].toUpperCase()) {
-            punctuation = words[words.length - 1][words[words.length - 1].length - 1];
-            console.log(words)
-            console.log("punctuation is ", punctuation)
+        if (
+          words[words.length - 1][
+            words[words.length - 1].length - 1
+          ].toLowerCase() ==
+          words[words.length - 1][
+            words[words.length - 1].length - 1
+          ].toUpperCase()
+        ) {
+          punctuation =
+            words[words.length - 1][words[words.length - 1].length - 1];
+          console.log(words);
+          console.log("punctuation is ", punctuation);
         }
 
-        words[getRandomInt(words.length)] = "_".repeat(10);
+        let randomIndex = getRandomInt(words.length);
 
-    
-        if (words[words.length - 1][words[words.length - 1].length - 1] === "_") {
-            words[words.length - 1] += punctuation;
+        hiddenWords.push(words[randomIndex]);
+
+        words[randomIndex] = "_".repeat(10);
+
+        if (
+          words[words.length - 1][words[words.length - 1].length - 1] === "_"
+        ) {
+          words[words.length - 1] += punctuation;
         }
-
-        
 
         secondSplit[i] = words.join(" ");
       }
       combined = zip(firstSplit, secondSplit);
     }
 
+    console.log(combined);
+
     setCombination(combined);
+    setHidden(hiddenWords);
   };
 
   const onClickCopy = () => {
@@ -71,6 +87,32 @@ export default function CombineScreen() {
   };
   const onChangeSecond = (e) => {
     setSecond(e.target.value);
+  };
+
+  const handleDownload = async () => {
+    // const data = {hidden: hidden.map(str => [str])};
+    let toData = combination.map((arr) => arr.join("\n")).map((str) => [str]);
+
+    hidden.forEach((string, index) => {
+      toData[index].push(string);
+    });
+
+    let data = {data: toData};
+
+    console.log(toData);
+
+    const res = await fetch("/api/create-csv", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    const csv = await res.text();
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(new Blob([csv]));
+    link.setAttribute("download", "data.csv");
+    document.body.appendChild(link);
+    link.click();
   };
 
   return (
@@ -112,7 +154,10 @@ export default function CombineScreen() {
           Hide Random Word
         </Button>
 
-        <Button variant="outlined" onClick={onClickCopy}>Copy Text</Button>
+        <Button variant="outlined" onClick={onClickCopy}>
+          Copy Text
+        </Button>
+        <Button variant="outlined" onClick={handleDownload}>Download CSV</Button>
       </Box>
 
       <Box sx={{ justifyContent: "right" }}>
