@@ -22,6 +22,6 @@ export default function handler(req, res) {
     });
   
     res.setHeader("Content-Disposition", "attachment; filename=data.csv");
-    res.setHeader("Content-Type", "text/csv");
+    res.setHeader("Content-Type", "text/csv; charset=utf-8"); // set charset to UTF-8
     res.status(200).send(csvContent);
   }
