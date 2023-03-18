@@ -90,27 +90,26 @@ export default function CombineScreen() {
   };
 
   const handleDownload = async () => {
-    // const data = {hidden: hidden.map(str => [str])};
     let toData = combination.map((arr) => arr.join("\n")).map((str) => [str]);
-
+  
     hidden.forEach((string, index) => {
       toData[index].push(string);
     });
-
-    let data = {data: toData};
-
-    console.log(toData);
-
-    const res = await fetch("/api/create-csv", {
+  
+    const data = {data: toData};
+  
+    const res = await fetch("/api/create-excel", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-
-    const csv = await res.text();
+  
+    const buffer = await res.arrayBuffer();
+    const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+    const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
-    link.href = URL.createObjectURL(new Blob([csv]));
-    link.setAttribute("download", "data.csv");
+    link.href = url;
+    link.setAttribute("download", "data.xlsx");
     document.body.appendChild(link);
     link.click();
   };
