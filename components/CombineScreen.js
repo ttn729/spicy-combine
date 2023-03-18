@@ -156,7 +156,7 @@ export default function CombineScreen() {
         <Button variant="outlined" onClick={onClickCopy}>
           Copy Text
         </Button>
-        <Button variant="outlined" onClick={handleDownload}>Download CSV</Button>
+        <Button variant="outlined" onClick={handleDownload}>Download Excel</Button>
       </Box>
 
       <Box sx={{ justifyContent: "right" }}>
