@@ -1,6 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Spicy Combine
+https://spicy-combine.vercel.app/
+
+Combine two texts line by line with some additional features.
+![image](https://user-images.githubusercontent.com/89943158/227053125-bc6bff04-fbd0-446f-8f04-fa6796f8453d.png)
+
+
+## Combine Text
+![image](https://user-images.githubusercontent.com/89943158/227053390-6309a1db-82d0-47a2-8618-02bf04e36b3a.png)
+![image](https://user-images.githubusercontent.com/89943158/227053458-644dd84f-d4db-490f-b7b5-a547f85e1cd9.png)
+
+## Hide Random Word
+Hides a random word from the second text input
+![image](https://user-images.githubusercontent.com/89943158/227053537-73fd3083-c11b-4f38-aa26-b1f22bdaa3a1.png)
+
+## Copy Text
+Copies the output into the user's clipboard
+
+## Export to Excel
+Exports the output text into .xlsx format for convenience.
+
+![image](https://user-images.githubusercontent.com/89943158/227053751-6b425c6e-6d99-4286-828f-c4166df269e9.png)
+
+![image](https://user-images.githubusercontent.com/89943158/227054306-06394c8a-29cf-4851-a904-a2a4a829cc23.png)
+
+
+## Motivation
+Spicy Combine allows users to generate fill in the blank style questions. 
 
 ## Getting Started
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
 
 First, run the development server:
 
@@ -13,26 +42,3 @@ pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
