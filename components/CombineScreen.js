@@ -25,6 +25,7 @@ export default function CombineScreen() {
       combined = zip(firstSplit, secondSplit);
     }
     setCombination(combined);
+    setHidden([]);
   };
 
   const onClickHidden = () => {

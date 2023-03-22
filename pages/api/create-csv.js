@@ -1,4 +1,3 @@
-import fs from 'fs';
 
 export default function handler(req, res) {
     // Define sample data to write to the CSV file
